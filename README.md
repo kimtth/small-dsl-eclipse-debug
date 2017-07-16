@@ -1,5 +1,5 @@
 # smallD
-Language Engineering as a Toy Language, name is Small D.
+Language Engineering as a Toy Language, name is Small D. Intergration with Eclipse Debug UI. Simple Interpreter and Debugger.
 
 # What and why is small D?
 
@@ -95,10 +95,10 @@ ______________printstr(a)<br/>
   5. select Project: MyDsl Project => New DSL file
   
  - Deploying Interpreter
- org.xtext.labs.mydsl.interpreter => Export => Runnable jar => debugDSL.jar
- Interpreter is deployed by debugDSL.jar
- Need to Copy a debugDSL.jar in your {DSLDevleoper install path}\debug path.
-  ex) D:\DSLDevleoper\debug\debugDSL.jar
+ org.xtext.labs.mydsl.interpreter => Export => Runnable jar => debugDSL.jar </br>
+ Interpreter is deployed by debugDSL.jar </br>
+ Need to Copy a debugDSL.jar in your {DSLDevleoper install path}\debug path. </br>
+ __ex) D:\DSLDevleoper\debug\debugDSL.jar </br>
  
  - How to set equinox configuration.(from http://www.robertwloch.net)
  1. In the Plug-ins tab change the Launch with select box to plug-ins select below only and uncheck the Target Platform subtree and check the two options below the plug-ins list.
@@ -106,7 +106,7 @@ In the search field above the plug-ins list enter equinox. and check the equinox
 In the filtered list also check the equinox.util plug-in:
 Now enter appl in the search field and check the ui.ide.application plug-in:
  2. Switch to the Configuration tab and check Clear the configuration area before launching. This ensures that runtime Eclipse doesn't cache plug-in configuration which avoids occational pitfalls.
- 3. The last change needs to be done in the Common tab. Switch the radio choice to Shared file and enter the Project Explorer path to the product plug-in: 갾/de.rowlo.testgenerator.testdsl.product. This will tell Eclipse to save that run configuration in a launcher file in the specified location:
+ 3. The last change needs to be done in the Common tab. Switch the radio choice to Shared file and enter the Project Explorer path to the product plug-in: /de.rowlo.testgenerator.testdsl.product. This will tell Eclipse to save that run configuration in a launcher file in the specified location:
  4. Finally switch back to the Plug-ins tab, clear the search filter and check the checkbox Validate plug-ins automatically prior to launching. Then click several times on Add Required Plug-ins right of the plug-ins list. You can stop clicking when the number of selected plug-ins does not change no more. To check if nothing's missing click on Validate Plug-ins. Eclipse should tell you that no problems were detected. Click on Apply and Close the dialog now.
 
 # References
@@ -136,7 +136,7 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
   (http://codeandme.blogspot.jp/2013/11/debugger-9-variables-support.html) <br/> 
  -Many help from stackoverflow.com.<br/>
  
- *debug port<br/>
+ - debug port<br/>
  debug engine use 29777 & 29888 port. if connection exception error occur, close process by process id.<br/>
  cmd>>netstat -ona | findstr 0.0:29777<br/>
   TCP    0.0.0.0:3000      0.0.0.0:0              LISTENING       3116<br/>
@@ -148,4 +148,4 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
  Copyright (c) 2017 Kim iyai@naver.com<br/>
  Released under the MIT license. Maybe.
 
-
+ I didn't open source code publicity yet because conflict of interest with company work. So if you have an interesting, send a mail personally. 
