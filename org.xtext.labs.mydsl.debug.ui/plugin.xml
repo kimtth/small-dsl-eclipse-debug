@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            type="dsl.launchType"
+            class="org.xtext.labs.mydsl.debug.ui.launcher.DSLTabGroup"
+            id="dsl.tabGroup"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            icon="icons/dsl_expression.gif"
+            configTypeID="dsl.launchType"
+            id="dsl.typeImage"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchShortcuts">
+      <shortcut
+            label="DSL Application"
+            icon="icons/dsl_new.gif"
+            class="org.xtext.labs.mydsl.debug.ui.launcher.DSLLaunchShortcut"
+            modes="run, debug"
+            id="dsl.launchShortcut">
+         <contextualLaunch>
+            <enablement>
+               <with variable="selection">
+                  <count value="1"/>
+                  <iterate>
+                     <instanceof value="org.eclipse.core.resources.IFile"/>
+                     <test
+                           value="*.dsl"
+                           property="org.eclipse.debug.ui.matchesPattern"/>
+                  </iterate>
+               </with>
+            </enablement>
+         </contextualLaunch>
+      </shortcut>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.debugModelPresentations">
+      <debugModelPresentation
+            class="org.xtext.labs.mydsl.debug.ui.presentation.DSLModelPresentation"
+            id="dsl.debugModel"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            filenames="*.dsl"
+            class="org.xtext.labs.mydsl.debug.ui.editor.DSLEditor"
+            icon="icons/dsl_expression.gif"
+            default="false"
+            name="DSL Editor"
+            id="dsl.editor"
+            extensions="dsl"/>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            targetID="dsl.editor"
+            id="dsl.rulerActions">
+         <action
+               actionID="RulerDoubleClick"
+               class="org.xtext.labs.mydsl.debug.ui.editor.RulerToggleBreakpointAction"
+               id="dsl.doubleClickBreakpointAction"
+               label="Not Used"
+               style="push"/>
+      </editorContribution>
+   </extension>
+  
+     <extension
+           point="org.eclipse.ui.contexts">
+        <context
+              parentId="org.eclipse.debug.ui.debugging"
+              description="Debugging DSL Programs"
+              name="Debugging DSL Programs"
+              id="dsl.debugging"/>
+     </extension>
+	  <extension
+	        point="org.eclipse.debug.ui.debugModelContextBindings">
+	     <modelContextBinding
+	           contextId="dsl.debugging"
+	           debugModelId="dsl.debugModel"/>
+	  </extension>
+
+	<extension
+         point="org.eclipse.ui.popupMenus">           
+      <viewerContribution
+            targetID="dsl.editor.rulerMenu"
+            id="dsl.editor.rulerActions">
+         <action
+               class="org.xtext.labs.mydsl.debug.ui.editor.RulerToggleBreakpointAction"
+               id="dsl.editor.ruler.toggleBreakpointAction"
+               label="Toggle Breakpoint"
+               menubarPath="debug"/>
+      </viewerContribution>
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            class="org.xtext.labs.mydsl.debug.ui.breakpoints.DSLEditorAdapterFactory"
+            adaptableType="org.xtext.labs.mydsl.debug.ui.editor.DSLEditor">
+			<adapter type="org.eclipse.debug.ui.actions.IToggleBreakpointsTarget"/>
+      </factory>
+   </extension>
+    <!--add: kim need to add tag below for run-to-line activation -->
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            class="org.xtext.labs.mydsl.debug.ui.breakpoints.DSLEditorAdapterFactory"
+            adaptableType="org.xtext.labs.mydsl.debug.ui.editor.DSLEditor">
+			<adapter type="org.eclipse.debug.ui.actions.IRunToLineTarget"/>
+      </factory>
+   </extension>
+   <!-- kim: For Debugging perspective -->
+    <extension
+       point="org.eclipse.ui.perspectiveExtensions">
+    <perspectiveExtension
+          targetID="org.eclipse.debug.ui.DebugPerspective">
+       <actionSet
+             id="org.eclipse.debug.ui.launchActionSet">
+       </actionSet>
+    </perspectiveExtension>
+ </extension>
+</plugin>

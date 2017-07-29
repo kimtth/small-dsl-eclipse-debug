@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 1
+Bundle-Name: Interpreter
+Bundle-SymbolicName: org.xtext.labs.mydsl.interpreter
+Bundle-Version: 1.0.0
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.emf.common,
+ org.eclipse.xtext,
+ org.eclipse.xtext.util,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.emf.ecore,
+ org.eclipse.emf.mwe.core,
+ org.apache.commons.cli
+Import-Package: com.google.inject;version="1.4.0",
+ org.xtext.labs,
+ org.xtext.labs.mydsl
+Export-Package: org.xtext.labs.mydsl.debugger,
+ org.xtext.labs.mydsl.debugger.client,
+ org.xtext.labs.mydsl.debugger.context,
+ org.xtext.labs.mydsl.debugger.event,
+ org.xtext.labs.mydsl.debugger.event.test,
+ org.xtext.labs.mydsl.debugger.launch
+

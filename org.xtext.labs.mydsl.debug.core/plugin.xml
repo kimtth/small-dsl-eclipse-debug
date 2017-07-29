@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.variables.valueVariables">
+      <variable
+            description="Path to Debugger executable in the local file system"
+            name="jarExecutable"
+            initialValue="D:\debugDSL.jar"/> 
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            sourceLocatorId="dsl.sourceLocator"
+            delegate="org.xtext.labs.mydsl.debug.core.launcher.DSLLaunchDelegate"
+            sourcePathComputerId="dsl.sourcePathComputer"
+            name="DSL Application"
+            id="dsl.launchType"
+            modes="run, debug"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.core.sourceLocators">
+      <sourceLocator
+            class="org.xtext.labs.mydsl.debug.core.sourcelookup.DSLSourceLookupDirector"
+            name="DSL Source Locator"
+            id="dsl.sourceLocator"/>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.sourcePathComputers">
+      <sourcePathComputer
+            class="org.xtext.labs.mydsl.debug.core.sourcelookup.DSLSourcePathComputerDelegate"
+            id="dsl.sourcePathComputer"/>
+   </extension>
+    
+   <extension
+         point="org.eclipse.debug.core.breakpoints">
+      <breakpoint
+            class="org.xtext.labs.mydsl.debug.core.breakpoints.DSLLineBreakpoint"
+            name="DSL Line Breakpoints"
+            markerType="org.xtext.labs.mydsl.debug.core.lineBreakpoint"
+            id="dsl.lineBreakpoint"/>
+   </extension>
+   <!-- The id is the same as the referenced "markerType" in the org.eclipse.debug.core.breakpoints extension point 
+   kim: not perfectly same but can except package name. -->
+   <extension
+         id="lineBreakpoint"
+         name="DSL Line Breakpoint Marker"
+         point="org.eclipse.core.resources.markers">
+      <super type="org.eclipse.debug.core.breakpointMarker"/> 
+      <persistent value="true"/>
+   </extension>
+   <!-- for array tree -->
+  <extension
+ 	point="org.eclipse.debug.core.logicalStructureTypes">
+	  <logicalStructureType
+	    class="org.xtext.labs.mydsl.debug.core.model.DSLArrayStructureDelegate"
+	    description="Array"
+	    id="dsl.arrayStructure"
+	    modelIdentifier="dsl.debugModel"/>
+  </extension>
+</plugin>

@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: debugCore
+Bundle-SymbolicName: org.xtext.labs.mydsl.debug.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: Kim
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.debug.ui,
+ org.eclipse.core.variables
+Export-Package: org.xtext.labs.mydsl.debug.core,
+ org.xtext.labs.mydsl.debug.core.breakpoints,
+ org.xtext.labs.mydsl.debug.core.launcher,
+ org.xtext.labs.mydsl.debug.core.model,
+ org.xtext.labs.mydsl.debug.core.sourcelookup
