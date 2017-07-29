@@ -1,0 +1,104 @@
+grammar org.xtext.labs.Mydsl with org.eclipse.xtext.xbase.Xbase
+
+generate mydsl "http://www.xtext.org/labs/Mydsl"
+import "http://www.eclipse.org/xtext/xbase/Xbase" as xbase
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+DSLProgram:
+	global+=varDeclared*
+	func+=(FuncDefinition)*
+	main=mainDeclared;
+
+mainDeclared:
+	{mainDeclared}
+	'launch_main' '('')' '{'
+		body+=BodyStatement*
+	'}';
+
+BodyStatement:
+	varExpression | varReturn | varDeclared |
+	IfExpression | DoWhileExpression | BrkStr
+	| AbstractMethodCall 
+;
+
+varReturn:
+	'return' rtn=Terminal;
+
+varTypeLiteral:
+	'num' | 'string' | 'bool';
+
+varDeclared:
+	{varDeclared}
+	scope=('var'|'val') (name=ValidID | name=ValidID (dim+=arrayDimension)+) ':' type=varTypeLiteral;
+
+varExpression:
+	varAssignment;
+
+varAssignment returns varExpression:
+	Terminal ({varAssignment.left=current} (op+=oper right+=TerminalOrMethod)*);
+
+Terminal:
+	{StringRef} value=STRING | {numRef} value=NUM
+	| {boolRef} varRef=('true' | 'false')
+	| {arrayRef} varRef=[varSymbol] (dim+=arrayDimension)+
+	| {varRef} varRef=[varSymbol];
+
+varSymbol:
+	varDeclared | FuncParameter;
+
+TerminalOrMethod:
+	Terminal | AbstractMethodCall;
+
+arrayDimension:
+	{arrayDimension}
+	'[' (index=[varSymbol] | size=NUM) ']';
+
+FuncCall:
+	{FuncCall}
+	func=[FuncDefinition] '(' (args+=Terminal (',' args+=Terminal)*)? ')';
+	
+FuncParameter:
+	FuncTypedDeclaration;
+
+fragment FuncTypedDeclaration *: //kim: i don't know exactly meaning of this syntax. even not in official document. but fragment doesn't recognize as a token.
+	type=varTypeLiteral name=ValidID
+;
+
+FuncDefinition:
+	'def' name=ValidID '(' (args+=FuncParameter (',' args+=FuncParameter)*)? ')' '{'
+		body+=BodyStatement*
+	'}';
+
+AbstractMethodCall:
+	FuncCall | StdFunction;
+
+StdFunction:
+	{StdFunction}
+	name=StdfunctionList '(' (args+=Terminal (',' args+=Terminal)*)? ')';
+
+IfExpression:
+	{IfExpression}
+	'if' '(' ifconditon=varExpression ')' '{'
+		then+=(BodyStatement)*
+	(=> '}''else''{'
+		else+=(BodyStatement)*)?
+	(=> "}");
+
+DoWhileExpression:
+	{DoWhileExpression}
+	'while' '(' loopConditon=varExpression ')' '{'
+		body+=(BodyStatement)*
+	(=> '}');
+
+StdfunctionList:
+	'printstr' | 'strjoin' | 'strsplit' | 'numtostr' | 'getargs';
+
+BrkStr:
+	{BrkStr}
+	brk='break';
+
+oper:
+	'-' | '+' | '/' | '*' | '>=' | '<=' | '==' | '!=' | '<' | '>' | '=' | 'and' | 'or';
+
+terminal NUM returns ecore::EInt:
+	('0'..'9')* ('.' ('0'..'9')+)?;
