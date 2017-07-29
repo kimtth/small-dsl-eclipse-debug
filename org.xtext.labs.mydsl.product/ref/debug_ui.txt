@@ -1,0 +1,39 @@
+﻿#Interpreter
+ 1. Breakline Multiple
+ 2. Server -> event resoponse handler
+ 3. Server -> request listner
+ 4. Refactoring to Command Pattern (X)
+
+#Debug UI default flow
+ IProcess == Interpreter
+ IDebugTarget == Source Code
+  IThread == Maybe Source Code also
+    one item in call stack => usually call stack is implemented when multi method.             
+
+#Maybe One thread has one DataStackFrame.
+ The data from StackFrame will be display on eclipse Variable view. 
+   if you create Variable Object with new. it will appear on debug variable view.
+   Value is Variable's item.
+
+ LauncherDelegate => get Configuration from LaunchGroup 
+ => create IProcess => communicate between each other
+ => send request and response => Interactive with Eclipse UI
+
+#Suspended
+ The suspend event have some event like Step into / Step over
+ Need to implement interface.
+
+#Eclipse Debug UI
+ Maybe fireEvent Method => send event to Eclipse UI.
+
+#the example make vm for custom simple language called pda by perl.
+ the pda has data and call stack.
+ call stack is a order of processing of source.
+ maybe call stack can be turn to AST in ordinary purpose language.(X)
+ data stack is a variable saving structure in pda interpreter.
+ 
+#requset | response
+ EventHandler | IThread
+
+#plugin_customization.ini:
+ org.eclipse.ui/defaultPerspectiveId=org.eclipse.ui.resourceP‌​erspective
