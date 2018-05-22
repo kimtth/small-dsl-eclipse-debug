@@ -147,5 +147,3 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
 
  Copyright (c) 2017 Kim iyai@naver.com<br/>
  Released under the MIT license. Maybe.
-
- I didn't open source code publicity yet because conflict of interest with company work. So if you have an interesting, send a mail personally. 
