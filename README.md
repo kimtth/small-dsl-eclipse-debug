@@ -1,79 +1,84 @@
 # smallD
-Language Engineering as a Toy Language, name is Small D. Intergration with Eclipse Debug UI. Simple Interpreter and Debugger.
+Language Engineering as a Toy Language, The name is Small D. Intergration with Eclipse Debug UI. Simple Interpreter and Debugger.
 
 # What and why is small D?
 
- Language Engineering as a Toy Language, name is Small D. D is abbreviation of DSL (Domain Specific Language). <br/>
- DSL Definition: it is not a general-purpose language like a c or java, specialized in particular purpose computer language.
- 
- Usually you don't want to implement programming-language for time-limited project and budget-limited system. <br/>
- But sometime you need to do it. many documents you will find but hard to find simple and easy reference. <br/>
- and the specialized purpose language is only using in specific system and it does not open source publicity easily. 
- 
- Furthermore for about tricky and cumbersome documents about language implementing and developing IDE.<br/>
- Even when you try to find about debugger. suddenly you will encounter linux gdb low level or complex language doc only.<br/>
- it make us confused what should i do as a next.
- 
- so i made a small programming language and some IDE feature for learn. :)<br/>
- i hope this help you.
+Language Engineering as a Toy Language, the name is Small D. D is an abbreviation of DSL (Domain Specific Language).
+DSL Definition: it is not a general-purpose language like a c or java, specialized in particular purpose computer language.
+
+Usually, you don't want to implement programming-language for time-limited project and budget-limited system.
+But sometimes you need to do it. many documents you will find but hard to find the simple and easy reference.
+and the specialized purpose language is only using in a specific system and it does not open source publicity easily.
+
+Furthermore for about tricky and cumbersome documents about language implementing and developing IDE.
+Even when you try to find about debugger. suddenly you will encounter Linux gdb low level or complex language doc only.
+it makes us confused about what should I do as a next.
+
+so I made a small programming language and some IDE features for learning. :)
+I hope this helps you.
 
 # RoadMap
 ![roadmap](https://user-images.githubusercontent.com/13846660/28236758-70618150-6969-11e7-8913-98eb604a697b.png)
  
- - What: Lexer => Parser => Interpreter => Debuggable Interpreter => Integrate with Eclipse Debug UI </br>
- - Intermediate Product: Token(lexer) => AST(parser) => Call Stack, Symbol table(interpreter)</br>
+ - What: Lexer => Parser => Interpreter => Debuggable Interpreter => Integrate with Eclipse Debug UI
+ - Intermediate Product: Token(lexer) => AST(parser) => Call Stack, Symbol table(interpreter)
  - How: Xtext Framework & Some implements by myself. </br>
 
 # Features of small D Project
 
- 1. small DSL language with Xtext<br/>
- : Error Checking, Semantic Coloring, Syntax Coloring, Outline, Hover Pop-up, Proposal(Auto-Completion), <br/>
-   Scope, Cross-reference, Labeling, MinimapView, Formatting, Quick Fix, Folding, Go To Declaration<br/>
- : Xtext official document is not efficient and change some time without proper guidance and very tiny community and reference. <br/>
-   but No way. better than nothing. <br/>
+ 1. small DSL language with Xtext
+ : Error Checking, Semantic Coloring, Syntax Coloring, Outline, Hover Pop-up, Proposal(Auto-Completion), <
+   Scope, Cross-reference, Labeling, MinimapView, Formatting, Quick Fix, Folding, Go To Declaration
+ : Xtext official document is not efficient and changes sometimes without proper guidance and very tiny community and reference. 
+ but No way. better than nothing. 
  
- 2. Debuggable Interpreter & Debugger <br/>
- : Call Stack, Symbol Table, AST(Antlr Parser customized by Xtext.)<br/>
- : Interpreter can control interpreting processing like a suspend and resume by command.<br/>
+ 
+ 2. Debuggable Interpreter & Debugger 
+ : Call Stack, Symbol Table, AST(Antlr Parser customized by Xtext.)
+ : Interpreter can control interpreting processing like a suspend and resume by command.
 
- 3. Integration with Eclipse Debug UI specification<br/>
- : Communication between Debugger and Eclipse Debug UI. <br/>
- : Request Socket <=> Response(data) & Event Socket<br/>
-![debugui](https://user-images.githubusercontent.com/13846660/28236759-7064b104-6969-11e7-8896-cbf309b023eb.png)<br/>
 
- 4. Eclipse Product for Deploying<br/>
- : Deploying your tool with a new launcher(exe) by equinox configuration.<br/>
- : this configuration is equipped in org.xtext.labs.mydsl.product project.<br/>
- : Just open DSLDeveloper.product in eclipse and then use Eclipse product export wizard in Overview Tab.<br/>
- : if you want to make installer file for your Product. <br/>
- : innosetup is best choice without extra paying. (www.jrsoftware.org/isinfo.php)<br/>
+ 3. Integration with Eclipse Debug UI specification
+ : Communication between Debugger and Eclipse Debug UI. 
+ : Request Socket <=> Response(data) & Event Socket
+ 
+![debugui](https://user-images.githubusercontent.com/13846660/28236759-7064b104-6969-11e7-8896-cbf309b023eb.png)
 
- 5. Java & C# generator<br/>
- : dsl file can be convert Java & C#, not perfectly matching.<br/>
- : C# will be convert all function parameter with ref keyword. one of sample for call by reference.<br/>
- * especially pascal is one of famous language implemented call by reference.   <br/>
+
+ 4. Eclipse Product for Deploying
+ : Deploying your tool with a new launcher(exe) by equinox configuration.
+ : this configuration is equipped in org.xtext.labs.mydsl.product project.
+ : Just open DSLDeveloper.product in eclipse and then use Eclipse product export wizard in Overview Tab.
+ : if you want to make installer file for your Product. 
+ : innosetup is best choice without extra paying. (www.jrsoftware.org/isinfo.php)
+
+ 5. Java & C# generator
+ : dsl file can be convert Java & C#, not perfectly matching.
+ : C# will be convert all function parameter with ref keyword. one of sample for call by reference.
+ * especially pascal is one of famous language implemented call by reference.
 
 # small D specification
 
-  small D sample code is in "org.xtext.labs.mydsl.product/src"<br/><br/>
-  ![grammar](https://user-images.githubusercontent.com/13846660/28236760-7066258e-6969-11e7-935a-c328ae9dabab.PNG)<br/>
+  small D sample code is in "org.xtext.labs.mydsl.product/src"
   
- - num, string, bool (num is int, string, bool is boolean)<br/>
- - multi array<br/>
- - if ~ else<br/>
- - while<br/>
- - function definition : "def function_name(){}"<br/>
- - launch_main is main function.<br/>
- - scope: try to find local variables first. if not, try to search global.<br/>
+  ![grammar](https://user-images.githubusercontent.com/13846660/28236760-7066258e-6969-11e7-935a-c328ae9dabab.PNG)
+  
+ - num, string, bool (num is int, string, bool is boolean)
+ - multi array
+ - if ~ else
+ - while
+ - function definition : "def function_name(){}"
+ - launch_main is main function.
+ - scope: try to find local variables first. if not, try to search global.
 
- - no class and object-oriented programming.<br/>
- - if expression supported but not support else if. it need to make jump function like a switch case.<br/>
- - loop expression supported but while only.<br/>
- - we can't use function as a parameter directly. <br/>
-___bad case: printstr(numtostr(b)) <br/>
-___proper case: a = numtostr(b)<br/>
-______________printstr(a)<br/>
- - Mydsl.xtext syntax support multiple operation, but interpreter not support yet. sorry for my lazyness.<br/>
+ - no class and object-oriented programming.
+ - if expression supported but not support else if. it need to make jump function like a switch case.
+ - loop expression supported but while only.
+ - we can't use function as a parameter directly. 
+___bad case: printstr(numtostr(b)) 
+___proper case: a = numtostr(b)
+______________printstr(a)
+ - Mydsl.xtext syntax support multiple operation, but interpreter not support yet. sorry for my lazyness.
     syntax point is Mydsl.xtext => "varAssignment returns varExpression:".<br/>
     if you want, you can define operator precedence but need to some job.<br/>
 
@@ -131,8 +136,8 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
  -develop under Xtext 2.12.0 and Java SE 1.8. Eclipse Neo.3<br/>
  -Minimap View source code can be find in https://github.com/apauzies/eclipse-minimap-view<br/>
 
- -Not a specific case, Sometimes the Variables view remains empty when suspended. <br/>
-  Backing View from Screen and taking Front once again. <br/>
+ -Not able to replicate a specific case, Sometimes the Variables view widget remains empty when it is suspended. <br/>
+  In this case, Switching the View and re-loading the widget once again. <br/>
   (http://codeandme.blogspot.jp/2013/11/debugger-9-variables-support.html) <br/> 
  -Many help from stackoverflow.com.<br/>
  
@@ -146,4 +151,3 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
 # License
 
  Copyright (c) 2017 Kim iyai@naver.com<br/>
- Released under the MIT license. Maybe.
