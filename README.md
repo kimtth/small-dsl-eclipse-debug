@@ -1,6 +1,15 @@
 # smallD
 Language Engineering as a Toy Language, The name is Small D. Intergration with Eclipse Debug UI. Simple Interpreter and Debugger.
 
+
+1.org.xtext.labs.mydsl.interpreter part is fully developed and designed based on parsing result, not a feature of xtend framework. 
+
+2.This interpreter is integrated with eclipse debug UI. This is independent part from xtend.
+
+3.The code editor functionalities are created and fixed by xtend frameworks.
+
+4.The side view and deploy is managed by eclipse plugin development.
+
 # What and why is small D?
 
 Language Engineering as a Toy Language, the name is Small D. D is an abbreviation of DSL (Domain Specific Language).
@@ -17,7 +26,7 @@ it makes us confused about what should I do as a next.
 so I made a small programming language and some IDE features for learning. :)
 I hope this helps you.
 
-# RoadMap
+# Blueprint
 ![roadmap](https://user-images.githubusercontent.com/13846660/28236758-70618150-6969-11e7-8913-98eb604a697b.png)
  
  - What: Lexer => Parser => Interpreter => Debuggable Interpreter => Integrate with Eclipse Debug UI
