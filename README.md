@@ -2,13 +2,13 @@
 Language Engineering as a Toy Language, The name is Small D. Intergration with Eclipse Debug UI. Simple Interpreter and Debugger.
 
 
-1.org.xtext.labs.mydsl.interpreter part is fully developed and designed based on parsing result, not a feature of xtend framework. 
+1. "org.xtext.labs.mydsl.interpreter" part is fully developed and designed based on parsing result, not a feature of Xtend framework. 
 
-2.This interpreter is integrated with eclipse debug UI. This is independent part from xtend.
+2. This interpreter is integrated with eclipse debug UI. This is an independent part from Xtend.
 
-3.The code editor functionalities are created and fixed by xtend frameworks.
+3. The code editor functionalities are created and fixed by Xtend frameworks.
 
-4.The side view and deploy is managed by eclipse plugin development.
+4. The Minimap view and deploy is created by eclipse plugin development.
 
 # What and why is small D?
 
@@ -60,6 +60,7 @@ I hope this helps you.
  : Just open DSLDeveloper.product in eclipse and then use Eclipse product export wizard in Overview Tab.
  : if you want to make installer file for your Product. 
  : innosetup is best choice without extra paying. (www.jrsoftware.org/isinfo.php)
+
 
  5. Java & C# generator
  : dsl file can be convert Java & C#, not perfectly matching.
