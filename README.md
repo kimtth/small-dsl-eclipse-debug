@@ -10,6 +10,8 @@ Language Engineering as a Toy Language, The name is Small D. Intergration with E
 
 4. The Minimap view and deploy is created by eclipse plugin development.
 
+5. Antlr will parse language definition file in `org.xtext.labs.mydsl/src/org/xtext/labs/Mydsl.xtext`. once it has been done, AST tree has generated, then, this would be fundamental of all customizing in this language engineering. 
+
 # What and why is small D?
 
 Language Engineering as a Toy Language, the name is Small D. D is an abbreviation of DSL (Domain Specific Language).
