@@ -14,19 +14,13 @@ Language Engineering as a Toy Language, The name is Small D. Intergration with E
 
 # What and why is small D?
 
-Language Engineering as a Toy Language, the name is Small D. D is an abbreviation of DSL (Domain Specific Language).
-DSL Definition: it is not a general-purpose language like a c or java, specialized in particular purpose computer language.
+Language Engineering as a Toy Language, the name is Small D. D is an abbreviation of DSL (Domain Specific Language). DSL Definition: it is not a general-purpose language like a c or java, specialized in particular purpose computer language.
 
-Usually, you don't want to implement programming-language for time-limited project and budget-limited system.
-But sometimes you need to do it. many documents you will find but hard to find the simple and easy reference.
-and the specialized purpose language is only using in a specific system and it does not open source publicity easily.
+Usually, you don't want to implement programming-language for a time-limited project and budget-limited system. But sometimes you need to do it. many documents you will find but hard to find the simple and easy reference. and the specialized purpose language is only using in a specific system and it does not open the source to the public easily.
 
-Furthermore for about tricky and cumbersome documents about language implementing and developing IDE.
-Even when you try to find about debugger. suddenly you will encounter Linux gdb low level or complex language doc only.
-it makes us confused about what should I do as a next.
+Furthermore for about tricky and cumbersome documents about language implementing and developing IDE, Even when you try to find about the debugger, suddenly you will encounter Linux gdb low level or complex language doc only. so it makes us confused about what should I do as next.
 
-so I made a small programming language and some IDE features for learning. :)
-I hope this helps you.
+so I made a small programming language and some IDE features for learning. :) I hope this helps you.
 
 # Blueprint
 ![roadmap](https://user-images.githubusercontent.com/13846660/28236758-70618150-6969-11e7-8913-98eb604a697b.png)
