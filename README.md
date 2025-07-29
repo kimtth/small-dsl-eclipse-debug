@@ -12,7 +12,7 @@ Language Engineering as a Toy Language, The name is Small D. Intergration with E
 
 5. Antlr will parse language definition file in `org.xtext.labs.mydsl/src/org/xtext/labs/Mydsl.xtext`. once it has been done, AST tree has generated, then, this would be fundamental of all customizing in this language engineering. 
 
-# What and why is small D?
+### What and why is small D?
 
 Language Engineering as a Toy Language, the name is Small D. D is an abbreviation of DSL (Domain Specific Language). DSL Definition: it is not a general-purpose language like a c or java, specialized in particular purpose computer language.
 
@@ -22,14 +22,14 @@ Furthermore for about tricky and cumbersome documents about language implementin
 
 so I made a small programming language and some IDE features for learning. :) I hope this helps you.
 
-# Blueprint
+### Blueprint
 ![roadmap](https://user-images.githubusercontent.com/13846660/28236758-70618150-6969-11e7-8913-98eb604a697b.png)
  
  - What: Lexer => Parser => Interpreter => Debuggable Interpreter => Integrate with Eclipse Debug UI
  - Intermediate Product: Token(lexer) => AST(parser) => Call Stack, Symbol table(interpreter)
  - How: Xtext Framework & Some implements by myself. </br>
 
-# Features of small D Project
+### Features of small D Project
 
  1. small DSL language with Xtext
  : Error Checking, Semantic Coloring, Syntax Coloring, Outline, Hover Pop-up, Proposal(Auto-Completion), <
@@ -63,7 +63,7 @@ so I made a small programming language and some IDE features for learning. :) I 
  : C# will be convert all function parameter with ref keyword. one of sample for call by reference.
  * especially pascal is one of famous language implemented call by reference.
 
-# small D specification
+### small D specification
 
   small D sample code is in "org.xtext.labs.mydsl.product/src"
   
@@ -88,7 +88,7 @@ ______________printstr(a)
     syntax point is Mydsl.xtext => "varAssignment returns varExpression:".<br/>
     if you want, you can define operator precedence but need to some job.<br/>
 
-# Standard function(only for testing)
+### Standard function(only for testing)
 
  - printstr(varStr)
  - strjoin(var1,var2)
@@ -96,7 +96,7 @@ ______________printstr(a)
  - varStr = numtostr(varNum)
  - getargs(index)
  
-# Setup & Deploy
+### Setup & Deploy
 
  - Setup
   1. import project in Eclipse.
@@ -120,7 +120,7 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
  3. The last change needs to be done in the Common tab. Switch the radio choice to Shared file and enter the Project Explorer path to the product plug-in: /de.rowlo.testgenerator.testdsl.product. This will tell Eclipse to save that run configuration in a launcher file in the specified location:
  4. Finally switch back to the Plug-ins tab, clear the search filter and check the checkbox Validate plug-ins automatically prior to launching. Then click several times on Add Required Plug-ins right of the plug-ins list. You can stop clicking when the number of selected plug-ins does not change no more. To check if nothing's missing click on Validate Plug-ins. Eclipse should tell you that no problems were detected. Click on Apply and Close the dialog now.
 
-# References
+### References
 
  1. Xtext<br/>
   https://eclipse.org/Xtext/<br/>
@@ -135,7 +135,7 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
  4. How to Deploy as a Product<br/>
   http://www.robertwloch.net/2016/08/the-few-hours-minutes-shiny-dsl-product-tutorial/<br/>
  
-# Extra Info
+### Extra Info
 
  -main function's arguments can be set on "launch configuration view." <br/>
  -for debugging, open dsl file with a DSL Editor. not with Xtext Editor.<br/>
@@ -154,6 +154,6 @@ Now enter appl in the search field and check the ui.ide.application plug-in:
  cmd>>taskkill /F /PID 3116<br/>
   here 3116 is the process ID<br/>
   
-# License
+### License
 
  Copyright (c) 2017 Kim iyai@naver.com<br/>
