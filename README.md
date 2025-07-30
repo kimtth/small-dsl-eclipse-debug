@@ -132,30 +132,12 @@ Sample code can be found in `org.xtext.labs.mydsl.product/src`
 
 Reference: [Robert Wloch’s Blog](http://www.robertwloch.net)
 
-1. **Plug-ins tab**:
-
-   * Select *Launch with: plug-ins selected below only*
-   * Uncheck *Target Platform*, check 2 options below
-   * Search & select:
-
-     * `equinox.ds`
-     * `equinox.util`
-     * `ui.ide.application`
-
-2. **Configuration tab**:
-
-   * Enable: *Clear the configuration area before launching* 🧹
-
-3. **Common tab**:
-
-   * Select *Shared file*
-   * Path: `/de.rowlo.testgenerator.testdsl.product`
-
-4. Back in **Plug-ins tab**:
-
-   * Click *Add Required Plug-ins* until no changes
-   * Validate Plug-ins
-   * Apply & Close
+```
+1. In the Plug-ins tab change the Launch with select box to plug-ins select below only and uncheck the Target Platform subtree and check the two options below the plug-ins list. In the search field above the plug-ins list enter equinox. and check the equinox.ds plug-in: In the filtered list also check the equinox.util plug-in: Now enter appl in the search field and check the ui.ide.application plug-in:
+2. Switch to the Configuration tab and check Clear the configuration area before launching. This ensures that runtime Eclipse doesn't cache plug-in configuration which avoids occational pitfalls.
+3. The last change needs to be done in the Common tab. Switch the radio choice to Shared file and enter the Project Explorer path to the product plug-in: /de.rowlo.testgenerator.testdsl.product. This will tell Eclipse to save that run configuration in a launcher file in the specified location:
+4. Finally switch back to the Plug-ins tab, clear the search filter and check the checkbox Validate plug-ins automatically prior to launching. Then click several times on Add Required Plug-ins right of the plug-ins list. You can stop clicking when the number of selected plug-ins does not change no more. To check if nothing's missing click on Validate Plug-ins. Eclipse should tell you that no problems were detected. Click on Apply and Close the dialog now.
+```
 
 ## References 🔗
 
