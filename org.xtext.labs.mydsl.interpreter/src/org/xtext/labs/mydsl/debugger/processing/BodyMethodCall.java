@@ -17,12 +17,12 @@ import org.xtext.labs.mydsl.debugger.context.CallStack;
 import org.xtext.labs.mydsl.debugger.context.CallStackItem;
 import org.xtext.labs.mydsl.debugger.context.Symbol;
 
-public class BodyMethodCall extends IStackHelper implements IBody {
+public class BodyMethodCall extends AbstractStackHelper implements IBody {
 
 	AbstractMethodCall e;
-	IBodySwitcher exe;
+	AbstractBodySwitcher exe;
 
-	public BodyMethodCall(IBodySwitcher exe, AbstractMethodCall e) {
+	public BodyMethodCall(AbstractBodySwitcher exe, AbstractMethodCall e) {
 		this.e = e;
 		this.exe = exe;
 	}

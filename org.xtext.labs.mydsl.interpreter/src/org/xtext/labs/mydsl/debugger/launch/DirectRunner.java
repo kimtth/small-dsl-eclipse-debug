@@ -8,9 +8,9 @@ import org.xtext.labs.mydsl.varDeclared;
 import org.xtext.labs.mydsl.debugger.context.CallStack;
 import org.xtext.labs.mydsl.debugger.context.CallStackItem;
 import org.xtext.labs.mydsl.debugger.context.SymbolTable;
-import org.xtext.labs.mydsl.debugger.processing.IBodySwitcher;
+import org.xtext.labs.mydsl.debugger.processing.AbstractBodySwitcher;
 
-public class DirectRunner extends IBodySwitcher {
+public class DirectRunner extends AbstractBodySwitcher {
 
 	String threadName;
 	DSLProgram program;

@@ -8,7 +8,7 @@ import org.xtext.labs.mydsl.debugger.context.CallStackItem;
 import org.xtext.labs.mydsl.debugger.context.Symbol;
 import org.xtext.labs.mydsl.debugger.context.SymbolTable;
 
-public class BodyVarDeclared extends IStackHelper implements IBody {
+public class BodyVarDeclared extends AbstractStackHelper implements IBody {
 
 	varDeclared e;
 
