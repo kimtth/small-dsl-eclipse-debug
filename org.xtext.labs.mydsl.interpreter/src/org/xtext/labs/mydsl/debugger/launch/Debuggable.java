@@ -9,15 +9,15 @@ import org.xtext.labs.mydsl.DSLProgram;
 import org.xtext.labs.mydsl.debugger.context.CallStack;
 import org.xtext.labs.mydsl.debugger.context.CallStackItem;
 import org.xtext.labs.mydsl.debugger.context.SymbolTable;
-import org.xtext.labs.mydsl.debugger.processing.IBodySwitcher;
+import org.xtext.labs.mydsl.debugger.processing.AbstractBodySwitcher;
 
-public class Debuggable extends IBodySwitcher {
+public class Debuggable extends AbstractBodySwitcher {
 
 	Thread t;
 	String threadName;
 	DSLProgram program;
 	Socket event;
-	IBodySwitcher exe;
+	AbstractBodySwitcher exe;
 
 	public Debuggable(DSLProgram prog, Socket event) {
 		this.program = prog;

@@ -4,7 +4,7 @@ import org.xtext.labs.mydsl.Terminal;
 import org.xtext.labs.mydsl.varReturn;
 import org.xtext.labs.mydsl.debugger.context.CallStack;
 
-public class BodyVarReturn extends IStackHelper implements IBody {
+public class BodyVarReturn extends AbstractStackHelper implements IBody {
 
 	varReturn e;
 

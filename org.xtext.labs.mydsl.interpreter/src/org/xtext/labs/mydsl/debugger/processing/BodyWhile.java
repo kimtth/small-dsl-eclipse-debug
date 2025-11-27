@@ -8,12 +8,12 @@ import org.xtext.labs.mydsl.varAssignment;
 import org.xtext.labs.mydsl.varExpression;
 import org.xtext.labs.mydsl.debugger.context.Symbol;
 
-public class BodyWhile extends ILogicalHelper implements IBody {
+public class BodyWhile extends AbstractLogicalHelper implements IBody {
 
 	DoWhileExpression e;
-	IBodySwitcher exe;
+	AbstractBodySwitcher exe;
 
-	public BodyWhile(IBodySwitcher exe, DoWhileExpression e) {
+	public BodyWhile(AbstractBodySwitcher exe, DoWhileExpression e) {
 		this.e = e;
 		this.exe = exe;
 	}
@@ -29,7 +29,7 @@ public class BodyWhile extends ILogicalHelper implements IBody {
 
 
 		// while(loopCnt < indexVal)
-		while (_checkBool(indexVal, op, loopCnt) && !isBrk) {
+		while (evaluateCondition(indexVal, op, loopCnt) && !isBrk) {
 			for (BodyStatement tn : e.getBody()) {
 				if (isBrk) {
 					break;
