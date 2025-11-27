@@ -134,6 +134,8 @@ Sample code can be found in `org.xtext.labs.mydsl.product/src`
 
 ## Class Hierarchy & Execution Flow
 
+The interpreter module (`org.xtext.labs.mydsl.interpreter`) is designed with a layered architecture for processing DSL statements and managing debugging state.
+
 ```mermaid
 classDiagram
     direction TB
