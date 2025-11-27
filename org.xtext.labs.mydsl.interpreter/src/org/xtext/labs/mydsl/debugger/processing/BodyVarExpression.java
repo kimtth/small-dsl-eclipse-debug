@@ -1,6 +1,5 @@
 package org.xtext.labs.mydsl.debugger.processing;
 
-import org.xtext.labs.mydsl.AbstractMethodCall;
 import org.xtext.labs.mydsl.Terminal;
 import org.xtext.labs.mydsl.TerminalOrMethod;
 import org.xtext.labs.mydsl.arrayRef;
@@ -9,12 +8,12 @@ import org.xtext.labs.mydsl.varExpression;
 import org.xtext.labs.mydsl.debugger.context.CallStack;
 import org.xtext.labs.mydsl.debugger.context.CallStackItem;
 
-public class BodyVarExpression extends ILogicalHelper implements IBody {
+public class BodyVarExpression extends AbstractLogicalHelper implements IBody {
 
 	varExpression e;
-	IBodySwitcher exe;
+	AbstractBodySwitcher exe;
 
-	public BodyVarExpression(IBodySwitcher exe, varExpression e) {
+	public BodyVarExpression(AbstractBodySwitcher exe, varExpression e) {
 		this.e = e;
 		this.exe = exe;
 	}
@@ -81,15 +80,6 @@ public class BodyVarExpression extends ILogicalHelper implements IBody {
 	}
 	
 	protected Object TerminalOrMethodExecutor(TerminalOrMethod t, String funcId) {
-		Object rtn = null;
-
-		if (t instanceof Terminal) {
-			rtn = DecoupleTerminal((Terminal) t, funcId);
-		} else if (t instanceof AbstractMethodCall) {
-			exe.executor((AbstractMethodCall) t, funcId);
-			rtn = lastFunctionReturn;
-		}
-
-		return rtn;
+		return exe.executeTerminalOrMethod(t, funcId, this);
 	}
 }

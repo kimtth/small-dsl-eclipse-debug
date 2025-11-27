@@ -2,7 +2,7 @@ package org.xtext.labs.mydsl.debugger.processing;
 
 import org.xtext.labs.mydsl.BrkStr;
 
-public class BodyBrk extends IStackHelper implements IBody {
+public class BodyBrk extends AbstractStackHelper implements IBody {
 
 	BrkStr e;
 	

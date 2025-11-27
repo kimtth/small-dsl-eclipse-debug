@@ -28,6 +28,191 @@ Even finding debugger documentation often leads to low-level gdb or obscure refe
 - **Intermediate Products**: Token (lexer) → AST (parser) → Call Stack & Symbol Table (interpreter)  
 - **How**: Using Xtext Framework 🛠️ + Custom Implementations 💡
 
+## Interpreter Architecture 🏗️
+
+The interpreter module (`org.xtext.labs.mydsl.interpreter`) is designed with a layered architecture for processing DSL statements and managing debugging state.
+
+### Class Hierarchy & Execution Flow
+
+```mermaid
+classDiagram
+    direction TB
+    
+    %% Base Thread Management
+    class ThreadLauncher {
+        <<abstract>>
+        #Thread t
+        #boolean suspended
+        +start()
+        +resume()
+        +suspend()
+    }
+    
+    %% Process Handler for Debugging
+    class AbstractProcessHandler {
+        <<abstract>>
+        #ThreadStateForDebugging(BodyStatement)
+        #waitOrResumeBodyExpr(BodyStatement)
+        +suspend()
+        +resume()
+    }
+    
+    %% Body Statement Switcher
+    class AbstractBodySwitcher {
+        +executor(BodyStatement, String)
+        #executeTerminalOrMethod(TerminalOrMethod, String, AbstractStackHelper)
+        +run()
+    }
+    
+    %% Stack Helper
+    class AbstractStackHelper {
+        <<abstract>>
+        #boolean isBrk
+        #boolean isRtn
+        #Object lastFunctionReturn
+        #lookupStackItem(String)
+        #lookupSymbolByTerminal(Terminal, String)
+        #DecoupleTerminal(Terminal, String)
+        #pushCallStackItem(String)
+    }
+    
+    %% Logical Helper
+    class AbstractLogicalHelper {
+        <<abstract>>
+        #evaluateLogical(boolean, String, boolean)
+        #evaluateCondition(Object, String, Object)
+    }
+    
+    %% Concrete Runners
+    class DirectRunner {
+        -DSLProgram program
+        +run()
+        -execute(mainDeclared)
+        -execute(EList~varDeclared~)
+    }
+    
+    class Debuggable {
+        -DSLProgram program
+        -Socket event
+        +run()
+        -execute(mainDeclared)
+        -execute(EList~varDeclared~)
+    }
+    
+    %% Body Handlers
+    class IBody {
+        <<interface>>
+        +execute(String funcId)
+    }
+    
+    class BodyVarExpression {
+        +execute(String)
+    }
+    
+    class BodyVarDeclared {
+        +execute(String)
+    }
+    
+    class BodyMethodCall {
+        +execute(String)
+    }
+    
+    class BodyIf {
+        +execute(String)
+    }
+    
+    class BodyWhile {
+        +execute(String)
+    }
+    
+    class BodyVarReturn {
+        +execute(String)
+    }
+    
+    class BodyBrk {
+        +execute(String)
+    }
+    
+    %% Inheritance
+    ThreadLauncher <|-- AbstractProcessHandler
+    AbstractProcessHandler <|-- AbstractBodySwitcher
+    AbstractBodySwitcher <|-- DirectRunner
+    AbstractBodySwitcher <|-- Debuggable
+    
+    AbstractStackHelper <|-- AbstractLogicalHelper
+    AbstractLogicalHelper <|-- BodyVarExpression
+    AbstractLogicalHelper <|-- BodyIf
+    AbstractLogicalHelper <|-- BodyWhile
+    AbstractStackHelper <|-- BodyVarDeclared
+    AbstractStackHelper <|-- BodyVarReturn
+    AbstractStackHelper <|-- BodyMethodCall
+    AbstractStackHelper <|-- BodyBrk
+    
+    IBody <|.. BodyVarExpression
+    IBody <|.. BodyVarDeclared
+    IBody <|.. BodyMethodCall
+    IBody <|.. BodyIf
+    IBody <|.. BodyWhile
+    IBody <|.. BodyVarReturn
+    IBody <|.. BodyBrk
+```
+
+```mermaid
+flowchart TD
+    subgraph Initialization[Program Setup]
+        A["Parse DSL File"] --> B["Create DSLProgram AST"]
+        B --> C["Debuggable Instance<br/>(AbstractBodySwitcher)"]
+    end
+    
+    subgraph Execution_Control_Loop[Debugging & Execution Control]
+        C --> D{"Is Debugging Active?"};
+        
+        D -- Yes (Debuggable) --> E["Listen on Socket<br/>(EventBroker/EventHandler)"];
+        D -- No (DirectRunner) --> I;
+        
+        E --> F{"Received Command?"};
+        
+        F -- Step/Resume --> G["AbstractProcessHandler.resume()<br/>Release Wait"];
+        F -- Suspend/Breakpoint Hit --> H["AbstractProcessHandler.suspend()<br/>Wait for Command"];
+    end
+    
+    subgraph Statement_Execution[Core Interpreter Cycle]
+        G --> I["AbstractBodySwitcher.executor(Statement)"];
+        H --> I;
+        
+        I --> J{"Statement Type?"};
+        
+        J -- Var/Method Call --> K["Body* Handlers<br/>(AbstractStackHelper)"];
+        J -- If/While/Logical --> L["BodyIf/While<br/>(AbstractLogicalHelper)"];
+        J -- Return/Break --> M["BodyReturn/Brk<br/>(Update Stack State)"];
+    end
+    
+    subgraph Runtime_State["State Management (AbstractStackHelper)"]
+        K & L & M --> N["Lookup/Update CallStack"];
+        N --> O["Check for Breakpoints<br/>(If suspended, go to H)"];
+    end
+    
+    O --> I;
+    
+    style C fill:#aaf,stroke:#333
+    style I fill:#fcc,stroke:#333
+    style H fill:#faa,stroke:#333
+```
+
+### Key Components
+
+| Component | Description |
+|-----------|-------------|
+| `ThreadLauncher` | Base class for thread lifecycle management (start, suspend, resume) |
+| `AbstractProcessHandler` | Handles debugging state transitions and breakpoint detection |
+| `AbstractBodySwitcher` | Routes body statements to appropriate handlers based on type |
+| `AbstractStackHelper` | Utilities for call stack and symbol table manipulation |
+| `AbstractLogicalHelper` | Logical and comparison operation utilities |
+| `DirectRunner` | Runs interpreter without debugging support |
+| `Debuggable` | Runs interpreter with full debugging support |
+| `EventBroker` | Socket server for Eclipse Debug UI communication |
+| `EventHandler` | Processes debug commands (resume, step, suspend, breakpoints) |
+
 ## Features of the small D Project 🌟
 
 ### 1. small DSL language with Xtext ✍️
