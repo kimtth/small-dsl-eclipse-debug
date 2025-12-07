@@ -13,7 +13,6 @@ Language Engineering as a Toy Language — the name is *Small D*. Integrated wit
   - [4. Eclipse Product for Deploying](#4-eclipse-product-for-deploying-)
   - [5. Java & C# Generator](#5-java--c-generator-)
 - [small D Specification](#small-d-specification-)
-  - [Supported Types & Constructs](#supported-types--constructs)
   - [Limitations](#limitations-️)
   - [Standard Functions](#standard-functions-for-testing-only-)
 - [Class Hierarchy & Execution Flow](#class-hierarchy--execution-flow)
@@ -101,7 +100,6 @@ Sample code can be found in `org.xtext.labs.mydsl.product/src`
 
 ![grammar](https://user-images.githubusercontent.com/13846660/28236760-7066258e-6969-11e7-935a-c328ae9dabab.PNG)
 
-### Supported Types & Constructs
 - `num`, `string`, `bool`
 - Multi-dimensional arrays
 - `if ~ else` (no `else if`)
